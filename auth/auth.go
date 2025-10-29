@@ -73,7 +73,7 @@ func CheckPasswordPolicy(password string) error {
 // bcrypt hash.
 func ValidatePassword(password string, hash string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-}
+} 
 
 // ValidatePasswordChange validates that the new password matches the
 // configured password policy, that the new password and confirmation
