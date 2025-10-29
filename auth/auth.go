@@ -33,7 +33,6 @@ var ErrEmptyPassword = errors.New("No password provided")
 // ErrPasswordTooShort is thrown when a user provides a password that is less
 // than MinPasswordLength
 var ErrPasswordTooShort = fmt.Errorf("Password must be at least %d characters", MinPasswordLength)
-
 // GenerateSecureKey returns the hex representation of key generated from n
 // random bytes
 func GenerateSecureKey(n int) string {
@@ -41,7 +40,6 @@ func GenerateSecureKey(n int) string {
 	io.ReadFull(rand.Reader, k)
 	return fmt.Sprintf("%x", k)
 }
-
 // GeneratePasswordHash returns the bcrypt hash for the provided password using
 // the default bcrypt cost.
 func GeneratePasswordHash(password string) (string, error) {
@@ -51,7 +49,6 @@ func GeneratePasswordHash(password string) (string, error) {
 	}
 	return string(h), nil
 }
-
 // CheckPasswordPolicy ensures the provided password is valid according to our
 // password policy.
 //
@@ -68,13 +65,11 @@ func CheckPasswordPolicy(password string) error {
 	}
 	return nil
 }
-
 // ValidatePassword validates that the provided password matches the provided
 // bcrypt hash.
 func ValidatePassword(password string, hash string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 } 
-
 // ValidatePasswordChange validates that the new password matches the
 // configured password policy, that the new password and confirmation
 // password match.
